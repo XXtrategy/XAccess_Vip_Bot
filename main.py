@@ -8,7 +8,9 @@ TOKEN = "7201263438:AAEpLIEfERlu6ursnfr02rLP51ulPtQ41lI"
 ASAAS_API_KEY = "$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjNmYjM2OTM3LTc1ZWYtNDFkZi05NjY5LThhMDdiZjIyYjU4MDo6JGFhY2hfODI5YWZjZDQtOGU4Ni00OGY3LThhMWEtOTkyOGNjOGMxOTJi"
 VIP_CHANNEL_LINK = "https://t.me/+lr6ZrCyDtdozNTVh"
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [[InlineKeyboardButton("🎟 Comprar Acesso VIP", callback_data='buy_vip')]]
