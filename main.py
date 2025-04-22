@@ -66,7 +66,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.edit_message_text("❌ Erro ao criar cliente no Asaas. Tente novamente.")
 
 def main():
-    app = ApplicationBuilder().token(TOKEN).build()
+    app = ApplicationBuilder().token("8109926247:AAHdLA2Oj4icyWNv-T9EzbXsLTOhXXJ5oG4").build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button))
     app.run_polling()
