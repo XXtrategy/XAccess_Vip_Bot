@@ -13,10 +13,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [[InlineKeyboardButton("🎟 Comprar Acesso VIP", callback_data='buy_vip')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text(
-        "👋 Olá! Compre acesso VIP exclusivo por 30 dias.\n\nClique no botão abaixo para gerar seu Pix:",
-        reply_markup=reply_markup
-    )
+    await update.message.reply_text("👋 Olá! Compre acesso VIP exclusivo por 30 dias.", reply_markup=reply_markup)
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -69,7 +66,7 @@ def main():
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button))
-    app.run_polling()
+    app.run_webhook()
 
 if __name__ == "__main__":
     main()
