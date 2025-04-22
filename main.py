@@ -11,8 +11,7 @@ VIP_CHANNEL_LINK = "https://t.me/+lr6ZrCyDtdozNTVh"
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [[InlineKeyboardButton("🎟 Comprar Acesso VIP", callback_data='buy_vip')]]
-    reply_markup = InlineKeyboardMarkup(keyboard)
+    print("📩 Mensagem recebida:", update)
     await update.message.reply_text(
         "👋 Olá! Compre acesso VIP exclusivo por 30 dias.\n\nClique no botão abaixo para gerar seu Pix:",
         reply_markup=reply_markup
