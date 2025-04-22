@@ -1,22 +1,24 @@
 import logging
+import os
+import requests
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
-import requests
-import os
 
+# Configurações
 TOKEN = "7201263438:AAEpLIEfERlu6ursnfr02rLP51ulPtQ41lI"
 ASAAS_API_KEY = "$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjNmYjM2OTM3LTc1ZWYtNDFkZi05NjY5LThhMDdiZjIyYjU4MDo6JGFhY2hfODI5YWZjZDQtOGU4Ni00OGY3LThhMWEtOTkyOGNjOGMxOTJi"
 VIP_CHANNEL_LINK = "https://t.me/+lr6ZrCyDtdozNTVh"
 
-import logging
+# Logs
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
-
+# /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [[InlineKeyboardButton("🎟 Comprar Acesso VIP", callback_data='buy_vip')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text("👋 Olá! Compre acesso VIP exclusivo por 30 dias.", reply_markup=reply_markup)
 
+# Botão
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -27,12 +29,12 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "access_token": ASAAS_API_KEY
         }
 
-        # 1. Criar cliente fictício
+        # 1. Criar cliente
         cliente_payload = {
             "name": f"Cliente {query.from_user.id}",
             "cpfCnpj": "12345678909",
             "email": f"{query.from_user.id}@fakeemail.com",
-            "phone": "+5547958339457"
+            "phone": "+5547999999999"
         }
 
         cliente_res = requests.post("https://www.asaas.com/api/v3/customers", json=cliente_payload, headers=headers)
@@ -60,10 +62,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     f"Após o pagamento, você será adicionado automaticamente ao canal VIP."
                 )
             else:
+                logging.error("Erro ao gerar pagamento: %s", pagamento_res.text)
                 await query.edit_message_text("❌ Erro ao gerar pagamento. Tente novamente.")
         else:
+            logging.error("Erro ao criar cliente: %s", cliente_res.text)
             await query.edit_message_text("❌ Erro ao criar cliente no Asaas. Tente novamente.")
 
+# Main
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
