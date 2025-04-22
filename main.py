@@ -5,7 +5,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
 # Configurações
-TOKEN = "7201263438:AAEpLIEfERlu6ursnfr02rLP51ulPtQ41lI"
+TOKEN = "8109926247:AAHdLA2Oj4icyWNv-T9EzbXsLTOhXXJ5oG4"
 ASAAS_API_KEY = "$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjNmYjM2OTM3LTc1ZWYtNDFkZi05NjY5LThhMDdiZjIyYjU4MDo6JGFhY2hfODI5YWZjZDQtOGU4Ni00OGY3LThhMWEtOTkyOGNjOGMxOTJi"
 VIP_CHANNEL_LINK = "https://t.me/+lr6ZrCyDtdozNTVh"
 
